@@ -1,9 +1,12 @@
 <template>
   <div>
     <div class="d-flex flex-column" v-if="account.id">
-      <h6 class="text-center text-light">
-        {{ account.name }}
-      </h6>
+      <div class="porf text-center">
+        <img :src="account.picture" alt="" height="40" width="40" class="mb-2 circleprof shadow">
+        <h6 class="ms-2 text-center text-light">
+          {{ account.name }}
+        </h6>
+      </div>
       <button class="btn selectable text-danger lighten-30" @click="logout" title="Logout">
         <i class="mdi mdi-account f-20"></i>
       </button>
@@ -41,6 +44,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.circleprof {
+  border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
+}
 
 </style>

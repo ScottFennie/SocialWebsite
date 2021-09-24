@@ -1,15 +1,16 @@
 <template>
   <div class="header-bar container-fluid px-0">
-    <div class="row">
+    <div class="row sticky-top">
       <div class="col-12 bg-dark py-2">
         <h1> top bar</h1>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-8" v-for="p in posts" :key="p.id">
+      <div class="col-md-8">
         <div v-if="account.id">
+          <PostForm />
         </div>
-        <Post :post="p" />
+        <Post :post="p" v-for="p in posts" :key="p.id" />
       </div>
       <div class="col-md-4">
         <h3>ads here</h3>

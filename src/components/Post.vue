@@ -3,8 +3,8 @@
     <div class="card my-3">
       <div class="card-body">
         <div class="creator d-flex">
-          <img :src="post.creator.picture" alt="" height="35">
-          <h5 class="ms-2 card-title">
+          <img :src="post.creator.picture" alt="" height="40" class="circleprof shadow">
+          <h5 class=" mt-2 ms-3 card-title">
             {{ post.creator.name }}
           </h5>
         </div>
@@ -34,6 +34,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+.circleprof {
+  border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
+}
 </style>

@@ -26,6 +26,11 @@
              required
       >
     </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success mt-2">
+        Post
+      </button>
+    </div>
   </form>
 </template>
 
