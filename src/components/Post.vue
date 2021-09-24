@@ -2,12 +2,14 @@
   <div class="">
     <div class="card my-3">
       <div class="card-body">
-        <div class="creator d-flex">
-          <img :src="post.creator.picture" alt="" height="40" class="circleprof shadow">
-          <h5 class=" mt-2 ms-3 card-title">
-            {{ post.creator.name }}
-          </h5>
-        </div>
+        <router-link :to="{name: 'Profile', params: {id: post.creatorId}}" class="selectable">
+          <div class="creator d-flex">
+            <img :src="post.creator.picture" alt="" height="40" class="circleprof shadow">
+            <h5 class=" mt-2 ms-3 card-title">
+              {{ post.creator.name }}
+            </h5>
+          </div>
+        </router-link>
         <p class=" mt-3 card-text">
           {{ post.body }}
         </p>

@@ -1,12 +1,13 @@
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
+import { convertToQuery } from '../utils/Query'
 
 class PostsService {
   async getPosts(query = {}) {
     AppState.posts = []
     logger.log('query', query)
-    const res = await api.get('api/posts')
+    const res = await api.get('api/posts' + convertToQuery(query))
     logger.log('post res', res)
     AppState.posts = res.data.posts
   }
