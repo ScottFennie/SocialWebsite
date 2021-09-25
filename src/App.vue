@@ -2,7 +2,7 @@
   <main>
     <div class="container-fluid">
       <div class="row">
-        <Sidebar class="col-lg-2" />
+        <Sidebar class="col-lg-2 shadow-md" />
         <div class="col-lg-10 viewport">
           <router-view />
         </div>

@@ -2,14 +2,23 @@
   <div class="">
     <div class="card my-3 shadow">
       <div class="card-body">
-        <router-link :to="{name: 'Profile', params: {id: post.creatorId}}" class="selectable">
-          <div class="creator d-flex">
-            <img :src="post.creator.picture" alt="" height="40" class="circleprof shadow">
-            <h5 class=" mt-2 ms-3 card-title">
-              {{ post.creator.name }}
-            </h5>
+        <div class="space-it d-flex justify-content-between">
+          <div class="profile">
+            <router-link :to="{name: 'Profile', params: {id: post.creatorId}}" class="selectable">
+              <div class="creator d-flex">
+                <img :src="post.creator.picture" alt="" height="40" class="circleprof shadow">
+                <h5 class=" mt-2 ms-3 card-title">
+                  {{ post.creator.name }}
+                </h5>
+              </div>
+            </router-link>
           </div>
-        </router-link>
+          <div class="delete">
+            <div class="" v-if="account.id == post.creatorId">
+              <i class="mdi mdi-close text-danger f-18 selectable" @click="deletePost()"></i>
+            </div>
+          </div>
+        </div>
         <p class=" mt-3 card-text">
           {{ post.body }}
         </p>
@@ -53,6 +62,13 @@ export default {
       async likePost() {
         try {
           await postsService.likePost(props.post.id)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      },
+      async deletePost() {
+        try {
+          await postsService.deletePost(props.post.id)
         } catch (error) {
           Pop.toast(error, 'error')
         }

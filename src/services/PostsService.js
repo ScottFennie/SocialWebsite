@@ -22,6 +22,17 @@ class PostsService {
     const res = await api.post(`api/posts/${id}/like`)
     logger.log('this is the like', res)
   }
+
+  async findPosts(query) {
+    const res = await api.get(`api/posts?query=${query}`)
+    AppState.posts = res.data.posts
+  }
+
+  async deletePost(id) {
+    const res = await api.delete(`api/posts/${id}`)
+    logger.log('deleted res', res)
+    AppState.posts = AppState.posts.filter(p => p.id !== id)
+  }
 }
 
 export const postsService = new PostsService()
