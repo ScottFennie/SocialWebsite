@@ -1,6 +1,6 @@
 <template>
-  <div class="card">
-    <img :src="ad.tall" alt="ad">
+  <div class="card shadow my-4">
+    <img :src="ad.tall" alt="ad" class="rounded">
   </div>
 </template>
 

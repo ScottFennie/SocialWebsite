@@ -12,7 +12,7 @@
         <Post :post="p" v-for="p in posts" :key="p.id" />
       </div>
       <div class="col-md-4">
-        <h3>ads here</h3>
+        <Ads :ad="a" v-for="a in ads" :key="a.id" />
       </div>
     </div>
   </div>
@@ -25,6 +25,7 @@ import { postsService } from '../services/PostsService'
 import Pop from '../utils/Pop'
 import { AppState } from '../AppState'
 import { profileService } from '../services/ProfileService'
+import { adsService } from '../services/AdsService'
 export default {
   setup() {
     const route = useRoute()
@@ -37,13 +38,15 @@ export default {
     }
     watchEffect(async() => {
       if (route) {
+        await adsService.getAds()
         await profileService.getProfileById(route.params.id)
         getPosts()
       }
     })
     return {
       profile: computed(() => AppState.profile),
-      posts: computed(() => AppState.posts)
+      posts: computed(() => AppState.posts),
+      ads: computed(() => AppState.ads)
     }
   }
 }
