@@ -17,6 +17,11 @@ class PostsService {
     logger.log('this is the new post', res)
     AppState.posts.unshift(res.data)
   }
+
+  async likePost(id) {
+    const res = await api.post(`api/posts/${id}/like`)
+    logger.log('this is the like', res)
+  }
 }
 
 export const postsService = new PostsService()

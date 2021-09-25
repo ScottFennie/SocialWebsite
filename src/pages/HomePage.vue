@@ -1,8 +1,19 @@
 <template>
   <div class="header-bar container-fluid px-0">
     <div class="row sticky-top">
-      <div class="col-12 bg-dark py-2">
-        <h1> top bar</h1>
+      <div class="col-12 bg-dark py-2 d-flex justify-content-end">
+        <div class="">
+          <!-- the searchbar is below -->
+          <div class="input-group">
+            <div class="form-outline">
+              <input type="search" id="form1" class="form-control" />
+              <label class="form-label" for="form1">Search</label>
+            </div>
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">

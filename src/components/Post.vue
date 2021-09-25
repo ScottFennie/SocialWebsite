@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <div class="card my-3">
+    <div class="card my-3 shadow">
       <div class="card-body">
         <router-link :to="{name: 'Profile', params: {id: post.creatorId}}" class="selectable">
           <div class="creator d-flex">
@@ -18,11 +18,19 @@
         </p>
       </div>
       <img :src="post.imgUrl" class="card-img-bottom" alt="...">
+      <div class="pe-2 py-1 d-flex justify-content-end">
+        <h5 class="pe-1">
+          {{ post.likes.length }}
+        </h5>
+        <div class="unliked" v-if="post.likeIds.includes(account.id)">
+          <i class="mdi mdi-heart f-16 selectable" @click="likePost()"></i>
+        </div>
+        <div class="unliked" v-else>
+          <i class="mdi mdi-heart-outline f-16 selectable" @click="likePost()"></i>
+        </div>
+      </div>
     </div>
     <div>
-      <h5>
-        Likes: {{ post.likes.length }}
-      </h5>
     </div>
   </div>
 </template>
@@ -30,11 +38,25 @@
 <script>
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
+import { postsService } from '../services/PostsService'
+import Pop from '../utils/Pop'
 export default {
   props: {
     post: {
       type: Object,
       required: true
+    }
+  },
+  setup(props) {
+    return {
+      account: computed(() => AppState.account),
+      async likePost() {
+        try {
+          await postsService.likePost(props.post.id)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
     }
   }
 
