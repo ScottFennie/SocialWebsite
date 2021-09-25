@@ -19,6 +19,11 @@
       </div>
       <img :src="post.imgUrl" class="card-img-bottom" alt="...">
     </div>
+    <div>
+      <h5>
+        Likes: {{ post.likes.length }}
+      </h5>
+    </div>
   </div>
 </template>
 
