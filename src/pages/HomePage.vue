@@ -25,6 +25,22 @@
           <PostForm />
         </div>
         <Post :post="p" v-for="p in posts" :key="p.id" />
+        <div class="row pb-3">
+          <div class="col-6 text-center">
+            <div class="button" v-if="currentpages > 1">
+              <button class="btn btn-primary">
+                Newer
+              </button>
+            </div>
+          </div>
+          <div class="col-6 text-center">
+            <div class="button">
+              <button class="btn btn-primary">
+                Older
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-md-4">
         <Ads :ad="a" v-for="a in ads" :key="a.id" />
@@ -55,7 +71,9 @@ export default {
     return {
       posts: computed(() => AppState.posts),
       account: computed(() => AppState.account),
-      ads: computed(() => AppState.ads)
+      ads: computed(() => AppState.ads),
+      currentpage: computed(() => AppState.currentpage),
+      totalpages: computed(() => AppState.totalpages)
 
     }
   }

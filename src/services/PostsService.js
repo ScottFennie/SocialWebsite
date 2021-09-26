@@ -5,12 +5,20 @@ import { convertToQuery } from '../utils/Query'
 import { Post } from '../models/Post'
 
 class PostsService {
-  async getPosts(query = {}) {
+  async getPosts(query = {}, page = 1) {
     // AppState.posts = []
     logger.log('query', query)
-    const res = await api.get('api/posts' + convertToQuery(query))
+    const res = await api.get('api/posts' + convertToQuery(query) + `?page=${page}`)
     logger.log('post res', res)
     AppState.posts = res.data.posts
+    // This is the current page number
+    const ps1 = res.data.page.charAt(0)
+    AppState.currentpage = Number(ps1)
+    // This is the total page numbers
+    const ps2 = res.data.page
+    const last = ps2.charAt(ps2.length - 1)
+    AppState.totalpages = Number(last)
+    logger.log('appstate total number', AppState.totalpages)
   }
 
   async createPost(newPost) {
