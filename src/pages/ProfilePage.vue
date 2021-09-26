@@ -1,13 +1,33 @@
 <template>
   <div class="container-fluid px-0">
-    <div class="row sticky-top">
-      <div class="col-12 bg-dark py-2">
-        <h1> top bar</h1>
+    <div class="row sticky-top shadow-sm">
+      <div class="col-12 bg-grad bg-white py-3 d-flex justify-content-between">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg"
+               width="35"
+               height="35"
+               fill="currentColor"
+               class=" ps-1 bi bi-bootstrap text-white"
+               viewBox="0 0 16 16"
+          >
+            <path d="M5.062 12h3.475c1.804 0 2.888-.908 2.888-2.396 0-1.102-.761-1.916-1.904-2.034v-.1c.832-.14 1.482-.93 1.482-1.816 0-1.3-.955-2.11-2.542-2.11H5.062V12zm1.313-4.875V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23H6.375zm0 3.762V8.162h1.822c1.236 0 1.887.463 1.887 1.348 0 .896-.627 1.377-1.811 1.377H6.375z" />
+            <path d="M0 4a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4zm4-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V4a3 3 0 0 0-3-3H4z" />
+          </svg>
+        </div>
+        <div class="">
+        </div>
       </div>
     </div>
     <div class="row back-img" :style="{backgroundImage: `url(${profile.coverImg})`}">
-      <div class="col-12" v-if="account.id === profile.id">
-        <div class="bot-right">
+      <div class="col-10">
+        <div class="prof-text">
+          <h2 class="mt-2">
+            {{ profile.name }}
+          </h2>
+        </div>
+      </div>
+      <div class="col-2 d-flex align-items-end justify-content-end" v-if="account.id === profile.id">
+        <div class="bot-right mb-2">
           <button class="btn btn-light" data-bs-target="#prof-modal" data-bs-toggle="modal">
             Edit
           </button>
@@ -90,6 +110,10 @@ export default {
 .back-img{
 height: 30vh;
   background-position: center center;
+}
+.bg-grad{
+background-color: #8EC5FC;
+background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
 }
 
 </style>
