@@ -8,13 +8,28 @@
     <div class="row back-img" :style="{backgroundImage: `url(${profile.coverImg})`}">
       <div class="col-12" v-if="account.id === profile.id">
         <div class="bot-right">
-          <button class="btn btn-light">
+          <button class="btn btn-light" data-bs-target="#prof-modal" data-bs-toggle="modal">
             Edit
           </button>
         </div>
       </div>
     </div>
     <div class="row">
+      <Modal id="prof-modal">
+        <template #modal-title>
+          Edit you Profile
+        </template>
+        <template #modal-body>
+          <form @submit.prevent="updateAccount()">
+            <input type="text" v-model="account.coverImg">
+            <input type="text" v-model="account.name">
+            <input type="text" v-model="account.picture">
+            <button class="btn btn-success ms-1">
+              Submit
+            </button>
+          </form>
+        </template>
+      </Modal>
       <div class="col-md-8">
         <Post :post="p" v-for="p in posts" :key="p.id" />
       </div>
@@ -33,8 +48,10 @@ import Pop from '../utils/Pop'
 import { AppState } from '../AppState'
 import { profileService } from '../services/ProfileService'
 import { adsService } from '../services/AdsService'
+import { accountService } from '../services/AccountService'
 export default {
   setup() {
+    const account = computed(() => AppState.account)
     const route = useRoute()
     async function getPosts() {
       try {
@@ -51,10 +68,18 @@ export default {
       }
     })
     return {
+      account,
       profile: computed(() => AppState.profile),
       posts: computed(() => AppState.posts),
       ads: computed(() => AppState.ads),
-      account: computed(() => AppState.account)
+
+      async updateAccount() {
+        try {
+          await accountService.editAccount(account.value)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
     }
   }
 }
