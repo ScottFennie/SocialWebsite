@@ -86,4 +86,8 @@ export default {
   border-bottom-right-radius: 50% 50%;
   border-bottom-left-radius: 50% 50%;
 }
+.c-height{
+  max-height: 30vh;
+}
+
 </style>

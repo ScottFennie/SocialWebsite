@@ -6,6 +6,13 @@
       </div>
     </div>
     <div class="row back-img" :style="{backgroundImage: `url(${profile.coverImg})`}">
+      <div class="col-12" v-if="account.id === profile.id">
+        <div class="bot-right">
+          <button class="btn btn-light">
+            Edit
+          </button>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-8">
@@ -46,7 +53,8 @@ export default {
     return {
       profile: computed(() => AppState.profile),
       posts: computed(() => AppState.posts),
-      ads: computed(() => AppState.ads)
+      ads: computed(() => AppState.ads),
+      account: computed(() => AppState.account)
     }
   }
 }
