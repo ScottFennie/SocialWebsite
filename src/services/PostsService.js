@@ -2,10 +2,11 @@ import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 import { convertToQuery } from '../utils/Query'
+import { Post } from '../models/Post'
 
 class PostsService {
   async getPosts(query = {}) {
-    AppState.posts = []
+    // AppState.posts = []
     logger.log('query', query)
     const res = await api.get('api/posts' + convertToQuery(query))
     logger.log('post res', res)
@@ -20,6 +21,9 @@ class PostsService {
 
   async likePost(id) {
     const res = await api.post(`api/posts/${id}/like`)
+    const i = AppState.posts.findIndex(p => p.id === id)
+    AppState.posts.splice(i, 1, res.data)
+    AppState.posts = [...AppState.posts]
     logger.log('this is the like', res)
   }
 
