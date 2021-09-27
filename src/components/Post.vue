@@ -32,10 +32,10 @@
           {{ post.likes.length }}
         </h5>
         <div class="unliked" v-if="post.likeIds.includes(account.id)">
-          <i class="mdi mdi-heart f-16 selectable" @click="likePost()"></i>
+          <i class="mdi mdi-heart f-16 selectable text-danger" @click="likePost()"></i>
         </div>
         <div class="unliked" v-else>
-          <i class="mdi mdi-heart-outline f-16 selectable" @click="likePost()"></i>
+          <i class="mdi mdi-heart-outline f-16 selectable text-danger" @click="likePost()"></i>
         </div>
       </div>
     </div>
