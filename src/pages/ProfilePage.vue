@@ -52,6 +52,22 @@
       </Modal>
       <div class="col-md-8">
         <Post :post="p" v-for="p in posts" :key="p.id" />
+        <div class="row pb-3">
+          <div class="col-6 text-center">
+            <div class="button" @click="getPostsPageMinus()">
+              <button class="btn btn-primary">
+                Newer
+              </button>
+            </div>
+          </div>
+          <div class="col-6 text-center">
+            <div class="button">
+              <button class="btn btn-primary" @click="getPostsPagePlus()">
+                Older
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-md-4">
         <Ads :ad="a" v-for="a in ads" :key="a.id" />
@@ -73,9 +89,9 @@ export default {
   setup() {
     const account = computed(() => AppState.account)
     const route = useRoute()
-    async function getPosts() {
+    async function getPostsById() {
       try {
-        await postsService.getPosts({ creatorId: route.params.id })
+        await profileService.getPostsById(route.params.id)
       } catch (error) {
         Pop.toast('error get posts by id', error)
       }
@@ -84,7 +100,7 @@ export default {
       if (route) {
         await adsService.getAds()
         await profileService.getProfileById(route.params.id)
-        getPosts()
+        getPostsById()
       }
     })
     return {
@@ -92,6 +108,27 @@ export default {
       profile: computed(() => AppState.profile),
       posts: computed(() => AppState.posts),
       ads: computed(() => AppState.ads),
+      currentpage: computed(() => AppState.currentpage),
+      totalpages: computed(() => AppState.totalpages),
+
+      async getPostsPagePlus() {
+        try {
+          if (this.currentpage < this.totalpages) {
+            await profileService.getPostsById(route.params.id, this.currentpage += 1)
+          }
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      },
+      async getPostsPageMinus() {
+        try {
+          if (this.currentpage > 1) {
+            await profileService.getPostsById(route.params.id, this.currentpage -= 1)
+          }
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      },
 
       async updateAccount() {
         try {
@@ -110,6 +147,7 @@ export default {
 .back-img{
 height: 30vh;
   background-position: center center;
+  background-size: cover;
 }
 .bg-grad{
 background-color: #8EC5FC;

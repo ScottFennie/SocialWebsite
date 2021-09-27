@@ -27,7 +27,7 @@
         <Post :post="p" v-for="p in posts" :key="p.id" />
         <div class="row pb-3">
           <div class="col-6 text-center">
-            <div class="button" v-if="currentpages > 1">
+            <div class="button" @click="getPostsPageMinus()">
               <button class="btn btn-primary">
                 Newer
               </button>
@@ -35,7 +35,7 @@
           </div>
           <div class="col-6 text-center">
             <div class="button">
-              <button class="btn btn-primary">
+              <button class="btn btn-primary" @click="getPostsPagePlus()">
                 Older
               </button>
             </div>
@@ -73,7 +73,26 @@ export default {
       account: computed(() => AppState.account),
       ads: computed(() => AppState.ads),
       currentpage: computed(() => AppState.currentpage),
-      totalpages: computed(() => AppState.totalpages)
+      totalpages: computed(() => AppState.totalpages),
+
+      async getPostsPagePlus() {
+        try {
+          if (this.currentpage < this.totalpages) {
+            await postsService.getPosts({}, this.currentpage += 1)
+          }
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      },
+      async getPostsPageMinus() {
+        try {
+          if (this.currentpage > 1) {
+            await postsService.getPosts({}, this.currentpage -= 1)
+          }
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
 
     }
   }
