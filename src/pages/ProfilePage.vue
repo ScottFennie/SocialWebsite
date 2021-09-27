@@ -32,6 +32,9 @@
               <h2 class=" text-white mt-2">
                 {{ profile.name }}
               </h2>
+              <h6>
+                <i class=" ps-1 mdi mdi-school f-20 text-white"></i>
+              </h6>
             </div>
           </div>
           <div class="col-6 d-flex align-items-center">
@@ -97,6 +100,10 @@
             <div class="pb-2 d-flex flex-column">
               <label for="" class="form-label">LinkedIn</label>
               <input class="form-control" type="text" v-model="account.linkedin">
+            </div>
+            <div class="pb-2 d-flex flex-column">
+              <label for="" class="form-label">Graduated?</label>
+              <input class="form-check-input" type="checkbox" v-model="account.graduated">
             </div>
             <div class="pb-2">
               <button class="btn btn-primary ms-1">
