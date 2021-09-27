@@ -4,6 +4,7 @@ import { api } from './AxiosService'
 
 class ProfileService {
   async getPostsById(id, page = 1) {
+    AppState.posts = []
     const res = await api.get(`api/profiles/${id}/posts` + `?page=${page}`)
     AppState.posts = res.data.posts
 

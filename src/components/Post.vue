@@ -23,7 +23,7 @@
           {{ post.body }}
         </p>
         <p class="card-text">
-          <small class="text-muted">4hrs ago</small>
+          <small class="text-muted">{{ new Date(post.createdAt).toDateString() }}</small>
         </p>
       </div>
       <img :src="post.imgUrl" class="card-img-bottom" alt="...">
