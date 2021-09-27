@@ -2,9 +2,21 @@
   <div>
     <div class="d-flex flex-column" v-if="account.id">
       <div class="porf text-center">
-        <img :src="account.picture" alt="" height="40" width="40" class="mb-2 circleprof shadow">
-        <h6 class="ms-2 text-center text-light">
-          {{ account.name }}
+        <img :src="account.picture" alt="" height="40" width="40" class="mb-3 circleprofside shadow">
+        <h2 class="ms-2 text-center text-primary">
+          {{ account.name }} <i class="mdi mdi-school f-14" v-if="account.graduated === true"></i>
+        </h2>
+        <h6 class=" py-1 text-primary">
+          <i class="mdi mdi-github f-20"></i>
+          Github
+        </h6>
+        <h6 class="ms-2 py-1 text-primary">
+          <i class="mdi mdi-linkedin f-20"></i>
+          LinkedIn
+        </h6>
+        <h6 class="ms-1 py-1 text-primary">
+          <i class="mdi mdi-file f-20"></i>
+          Resume
         </h6>
       </div>
       <button class="btn selectable text-danger lighten-30" @click="logout" title="Logout">
@@ -45,11 +57,14 @@ export default {
 </script>
 
 <style lang="scss">
-.circleprof {
+.circleprofside {
   border-top-left-radius: 50% 50%;
   border-top-right-radius: 50% 50%;
   border-bottom-right-radius: 50% 50%;
   border-bottom-left-radius: 50% 50%;
+  height: 12rem;
+  width: 12rem;
+  border: 2px solid #ADD8E6;
 }
 
 </style>
