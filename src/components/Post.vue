@@ -85,6 +85,8 @@ export default {
   border-top-right-radius: 50% 50%;
   border-bottom-right-radius: 50% 50%;
   border-bottom-left-radius: 50% 50%;
+  height: 3rem;
+  width: 3rem;
 }
 .c-height{
   max-height: 30vh;

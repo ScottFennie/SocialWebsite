@@ -11,7 +11,7 @@
         <i class="mdi mdi-account f-20"></i>
       </button>
     </div>
-    <div v-else>
+    <div v-else class="text-center">
       <button class="btn selectable text-success lighten-30" @click="login">
         <b>
           Login
